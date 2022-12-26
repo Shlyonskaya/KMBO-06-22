@@ -62,3 +62,11 @@ function mark_along!(robot, move_side, border_side)
   putmarker!(robot)     
  end 
 end 
+
+function mark_external_internal(robot)     
+ back_path = move_to_angle!(robot)        
+ mark_external_rect!(robot)     #УТВ: по периметру внешней рамки стоят маркеры     
+ find_internal_border!(robot)     #УТВ: с севера от робота - внутренняя прямоугольная           перегородка     
+ move_to_internal_sudwest!(robot)     #УТВ: робот - во внешнем юго-западном углу внутренней                   прямоугольной перегородки     
+ mark_internal_rect!(robot)     #УТВ: по периметру внутренней прямоугольной            перегородки стоят маркеры     
+ move_to_back!(robot, back_path)   #УТВ: робот - в исходном положении end 
