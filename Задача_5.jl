@@ -63,6 +63,16 @@ function mark_along!(robot, move_side, border_side)
  end 
 end 
 
+function numsteps_along!(robot, direct, max_num_steps)::Int     
+ num_steps = 0     
+ while num_steps<max_num_steps && try_move!(robot,direct) #- здесь принципиально, что операция && является “ленивой”         
+  num_steps +=1     
+ end     
+ return num_steps 
+end  
+
+along!(robot, direct) = while try_move!(robot, direct) end 
+
 function mark_external_internal(robot)     
  back_path = move_to_angle!(robot)        
  mark_external_rect!(robot)     #по периметру внешней рамки стоят маркеры     
