@@ -70,3 +70,4 @@ function mark_external_internal(robot)
  move_to_internal_sudwest!(robot)     #УТВ: робот - во внешнем юго-западном углу внутренней                   прямоугольной перегородки     
  mark_internal_rect!(robot)     #УТВ: по периметру внутренней прямоугольной            перегородки стоят маркеры     
  move_to_back!(robot, back_path)   #УТВ: робот - в исходном положении end 
+end
