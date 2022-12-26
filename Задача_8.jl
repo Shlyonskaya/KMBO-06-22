@@ -5,20 +5,23 @@
 """
 
 using HorizonSideRobots
-function under_entry!(robot)
-    imax, jmax = r.situation.frame_size
-    while !isborder(robot, Nord)
-        move!(robot, Nord)
-    end
-    number_i = 1
-    side = Ost
-    while isborder(robot, Nord)
-        move!(robot, side)
-        number_i += 1
-        if (number_i >= imax)
-            side = inverse(side)
-            number_i = 0
-        end
-    end
+
+function find_marker!(robot)
+	max_num_steps = 1
+	side = Nord
+	while !ismarker(robot)
+		find_marker_along!(robot, side, max_num_steps)
+		side = left(side)
+		find_marker_along!(robot, side, max_num_steps)
+		max_num_steps += 1
+		side = left(side)
+	end
 end
-inverse(side::HorizonSide) = HorizonSide((Int(side) +2)% 4)
+
+function find_marker_along!(robot, side, max_num_steps)
+	num_steps = 0
+	while num_steps < max_num_steps && !ismarker(robot)
+		move!(robot, side)
+		num_steps += 1
+	end
+end
