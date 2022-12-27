@@ -19,17 +19,17 @@ function find_corner!(robot) #Функция, направляющая робо�
 end
 
 function go_to_home!(robot,num_steps_Sud,num_steps_West) #Возвращает робота в исходное положение
-    for _i in 1:num_steps_Sud
+    for _ in 1:num_steps_Sud
         move!(robot,Nord)
     end
-    for _i in 1:num_steps_West
+    for _ in 1:num_steps_West
         move!(robot,Ost)
     end
 end
 
 function chess!(robot,N) #Рисовать
     while (!isborder(robot,Nord))
-        for _i in 1:N #Рисуем N строк 
+        for _ in 1:N #Рисуем N строк 
             while (!isborder(robot,Ost))
                 point!(robot,N)
                 moving!(robot,N)
@@ -40,7 +40,7 @@ function chess!(robot,N) #Рисовать
                 try_move!(robot,Nord)
         end
 
-        for _i in 1:N
+        for _ in 1:N
             while (!isborder(robot,Ost))
                 moving!(robot,N)
                 point!(robot,N)
@@ -54,7 +54,7 @@ function chess!(robot,N) #Рисовать
 end
 
 function point!(robot,N) #Рисуем часть точки
-        for _i in 1:N
+        for _ in 1:N
             putmarker!(robot)
             if (try_move!(robot,Ost)==false)
                 return
@@ -63,7 +63,7 @@ function point!(robot,N) #Рисуем часть точки
 end
 
 function moving!(robot,N) #Расстояние между частями точки
-    for _i in 1:N
+    for _ in 1:N
         try_move!(robot,Ost)
     end
 end
