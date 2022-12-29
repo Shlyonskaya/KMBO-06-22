@@ -28,24 +28,24 @@ function go_to_home!(robot,num_steps_Sud,num_steps_West) #Возвращает �
 end
 
 function chess!(robot,N) #Рисовать
-    while (!isborder(robot,Nord))
+    while !isborder(robot,Nord)
         for _ in 1:N #Рисуем N строк 
-            while (!isborder(robot,Ost))
+            while !isborder(robot,Ost)
                 point!(robot,N)
                 moving!(robot,N)
             end
-            while (!isborder(robot,West))
+            while !isborder(robot,West)
                 move!(robot,West)
             end
                 try_move!(robot,Nord)
         end
 
         for _ in 1:N
-            while (!isborder(robot,Ost))
+            while !isborder(robot,Ost)
                 moving!(robot,N)
                 point!(robot,N)
             end
-            while (!isborder(robot,West))
+            while !isborder(robot,West)
                 move!(robot,West)
             end
             try_move!(robot,Nord)
@@ -70,7 +70,7 @@ end
 
 function try_move!(robot,side) 
 #делает попытку одного шага в заданном направлении и  возвращает true, в случае, если это возможно, и false - в  противном случае (робот остается в исходном положении) 
-    if (!isborder(robot,side))
+    if !isborder(robot,side)
         move!(robot,side)
         return true
     else
